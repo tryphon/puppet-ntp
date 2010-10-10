@@ -57,7 +57,16 @@ class ntp::ntpdate {
       content => "exit 0\n"
     }
   }
+
+  include ntp::ntpdate::tiger
 }
+
+class ntp::ntpdate::tiger {
+  if $tiger_enabled {
+    tiger::ignore { ntpdate: }
+  }  
+}
+
 
 class ntp::munin::ntpdate {
   include ntp::servers

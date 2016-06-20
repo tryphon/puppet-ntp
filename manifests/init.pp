@@ -36,7 +36,7 @@ class ntp::munin::client {
 	$munin_ntps = gsub(split($ntp::servers::all_ntp_servers, " "), "(.+)", "ntp_\\1")
 
 	munin::plugin { $munin_ntps:
-    source => "puppet:///ntp/ntp_"
+    source => "puppet:///modules/ntp/ntp_"
 	}
 
   if $ntp::servers::all_ntp_servers != $ntp::servers::debian_ntp_servers {
@@ -73,6 +73,6 @@ class ntp::munin::ntpdate {
   include ntp::ntpdate
 
 	munin::plugin { "ntpdate_$ntp::servers::first_ntp_server":
-    source => "puppet:///ntp/ntpdate_"
+    source => "puppet:///modules/ntp/ntpdate_"
 	}
 }
